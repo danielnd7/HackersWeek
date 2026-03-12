@@ -24,7 +24,39 @@ var app = builder.Build();
     });
 // }
 
+var urls = new Dictionary<string, UrlEntry>();
 
 app.MapGet("/", () => "URL SHORTENER");
 
+
+app.MapPost("/urls", (CreateUrlRequest request) =>
+{
+    if (string.IsNullOrWhiteSpace(request.Url)) {
+        return Results.BadRequest(new {error = "url vacia gilipollas"});
+    }
+    var code = Guid.NewGuid().ToString()[..6];
+
+    var entry = new UrlEntry(code, request.Url, DateTime.UtcNow);
+
+    urls[code] = entry;
+
+    return Results.Created($"/urls/{code}", entry);
+}); // crear url acotada
+
+
+app.MapDelete("/urls/{code}", (string code) =>
+{
+    return urls.Remove(code) ? Results.NoContent() : Results.NotFound() ;
+}); // eliminar url
+
+
+app.MapGet("/urls/{code}", (string code) =>
+{
+    return urls.TryGetValue(code, out var entry) ? Results.Redirect(entry.OriginalUrl) : Results.NotFound() ;
+}); 
+
 app.Run();
+
+record UrlEntry(string Code, string OriginalUrl, DateTime CreatedAt);
+
+record CreateUrlRequest(string Url);

@@ -32,6 +32,18 @@
             "related": ".pdb"
           }
         }
+      },
+      "Scalar.AspNetCore/2.12.54": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Scalar.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0/Scalar.AspNetCore.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -68,11 +80,28 @@
         "microsoft.openapi.2.0.0.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Scalar.AspNetCore/2.12.54": {
+      "sha512": "mRumGYTKRj1BH54Okvdsg/O1m7q+WKSMUg83fqRPJSOAUAIrU4PFN9C9gYiRbLn9Dcz7M+cSKWNBSQVhKqZk6g==",
+      "type": "package",
+      "path": "scalar.aspnetcore/2.12.54",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net10.0/Scalar.AspNetCore.dll",
+        "lib/net8.0/Scalar.AspNetCore.dll",
+        "lib/net9.0/Scalar.AspNetCore.dll",
+        "scalar.aspnetcore.2.12.54.nupkg.sha512",
+        "scalar.aspnetcore.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.AspNetCore.OpenApi >= 10.0.0"
+      "Microsoft.AspNetCore.OpenApi >= 10.0.0",
+      "Scalar.AspNetCore >= 2.12.54"
     ]
   },
   "packageFolders": {
@@ -121,6 +150,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[10.0.0, )"
+          },
+          "Scalar.AspNetCore": {
+            "target": "Package",
+            "version": "[2.12.54, )"
           }
         },
         "imports": [
